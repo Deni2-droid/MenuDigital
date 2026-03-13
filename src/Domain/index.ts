@@ -20,7 +20,7 @@ export interface TicketItem {
 
 export interface Profile {
   id: string;
-  role: string; // "admin" | "user"
+  role: string; 
   name?: string;
   email?: string;
 }

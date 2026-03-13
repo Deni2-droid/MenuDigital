@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { supabase } from "../api/supabaseClient";
-import { Profile } from "../types";
+import { Profile } from "../Domain";
 
 interface AuthContextType {
   session: any;

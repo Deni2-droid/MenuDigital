@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import ProductList from "../components/ProductList";
 import { TicketContext } from "../context/TicketContext";
+import { Product } from "../Domain";
 import { getProducts } from "../services/ProductService";
-import { Product } from "../types";
 
 export default function ProductsScreen(): JSX.Element {
   const { category } = useLocalSearchParams<{ category?: string }>();

@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Product, TicketItem } from "../types";
+import { Product, TicketItem } from "../Domain";
 
 export default function ProductItem({
   product,

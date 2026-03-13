@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ProductList from "../components/ProductList";
 import { TicketContext } from "../context/TicketContext";
-import { Product } from "../types";
+import { Product } from "../Domain";
 
 // Simulación de servicio
 const getProducts = async (): Promise<Product[]> => [

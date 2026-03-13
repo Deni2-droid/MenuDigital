@@ -1,5 +1,5 @@
 import { supabase } from "../api/supabaseClient";
-import { Product } from "../types";
+import { Product } from "../Domain";
 
 export async function getProducts(): Promise<Product[]> {
   const { data, error } = await supabase.from("products").select("*");

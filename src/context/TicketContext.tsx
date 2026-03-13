@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useState } from "react";
-import { Product, TicketItem } from "../types";
+import { Product, TicketItem } from "../Domain";
 
 interface TicketContextType {
   ticket: TicketItem[];

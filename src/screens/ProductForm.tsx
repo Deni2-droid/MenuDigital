@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Product } from "../Domain";
 import { createProduct } from "../services/ProductService";
-import { Product } from "../types";
 
 export default function ProductForm() {
   const [name, setName] = useState("");

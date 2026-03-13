@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList } from "react-native";
-import { Product, TicketItem } from "../types";
+import { Product, TicketItem } from "../Domain";
 import ProductItem from "./ProductItem";
 
 export default function ProductList({

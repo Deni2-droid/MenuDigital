@@ -9,13 +9,13 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
+import { Product } from "../../Domain";
 import {
     createProduct,
     deleteProduct,
     getProducts,
     updateProduct,
 } from "../../services/ProductService";
-import { Product } from "../../types";
 
 export default function AdminProducts() {
   const [products, setProducts] = useState<Product[]>([]);
