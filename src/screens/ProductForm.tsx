@@ -12,7 +12,7 @@ export default function ProductForm() {
   const handleSave = async () => {
     const product: Product = {
       name, price: parseFloat(price), category: "general",
-      id: 0,
+      id: "",
       description: "",
       image: ""
     };
