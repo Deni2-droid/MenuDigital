@@ -6,42 +6,64 @@ import { TicketContext } from "../context/TicketContext";
 import { Product } from "../Domain";
 import { getProducts } from "../services/ProductService";
 
-export default function ProductsScreen(): JSX.Element {
-  const { category } = useLocalSearchParams<{ category?: string }>();
+export default function ProductsScreen() {
+
+  const params = useLocalSearchParams();
+  const category = typeof params.category === "string" ? params.category : undefined;
+
   const [products, setProducts] = useState<Product[]>([]);
-  const [search, setSearch] = useState(""); // 👈 estado para búsqueda
-  const { addItem } = useContext(TicketContext)!;
+
+  const [search, setSearch] = useState("");
+
+  const ticketContext = useContext(TicketContext);
+
+  if (!ticketContext) {
+    return <Text>Error: TicketContext no disponible</Text>;
+  }
+
+  const { addItem } = ticketContext;
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const allProducts = await getProducts();
+
+        // Filtrado por categoría seguro
         if (category) {
           setProducts(allProducts.filter((p) => p.category === category));
         } else {
           setProducts(allProducts);
         }
+
       } catch (error) {
-        console.error(error);
+        console.error("Error al obtener productos:", error);
       }
     };
+
     fetchProducts();
   }, [category]);
 
-  // Función para normalizar texto (quita acentos y pasa a minúsculas)
+  // 🔤 Normalizar texto (quita acentos)
   const normalize = (str: string) =>
-    str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    str
+      ?.normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
 
+  // 🔍 Filtrar productos
   const filteredProducts = products.filter((p) =>
     normalize(p.name).includes(normalize(search))
   );
 
   return (
     <View style={styles.container}>
+
+      {/* 🧾 TÍTULO */}
       <Text style={styles.title}>
         {category ? `Productos de ${category}` : "Todos los productos"}
       </Text>
 
+      {/* 🔍 BUSCADOR */}
       <TextInput
         style={styles.searchBar}
         placeholder="Buscar producto..."
@@ -49,12 +71,14 @@ export default function ProductsScreen(): JSX.Element {
         onChangeText={setSearch}
       />
 
+      {/* 📦 LISTA */}
       {filteredProducts.length > 0 ? (
         <ProductList
           products={filteredProducts}
           onAdd={(p) =>
             addItem({
-              id: p.id!,
+              // ⚠️ Evitamos error si id es undefined
+              id: p.id ?? "",
               name: p.name,
               price: p.price,
               description: p.description,
@@ -64,18 +88,23 @@ export default function ProductsScreen(): JSX.Element {
           }
         />
       ) : (
-        <Text style={styles.noResults}>No se encontraron productos</Text>
+        <Text style={styles.noResults}>
+          No se encontraron productos
+        </Text>
       )}
+
     </View>
   );
 }
 
+// 🎨 ESTILOS
 const styles = StyleSheet.create({
   container: { 
     flex: 1, 
     padding: 20, 
     backgroundColor: "#E9A975" 
   },
+
   title: { 
     fontSize: 32, 
     color: "white",
@@ -83,6 +112,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center" 
   },
+
   searchBar: {
     backgroundColor: "#fff",
     borderRadius: 10,
@@ -91,6 +121,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 20,
   },
+
   noResults: {
     fontSize: 18,
     color: "#fff",
