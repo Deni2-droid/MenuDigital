@@ -55,7 +55,7 @@ export default function RegisterScreen() {
       <Text style={styles.title}>Crear cuenta</Text>
 
       <Image
-        source={require("../../assets/images/user.png")} // ⚠️ cambia a png si webp falla
+        source={require("../../assets/images/user.webp")} // 
         style={styles.logo}
       />
 
