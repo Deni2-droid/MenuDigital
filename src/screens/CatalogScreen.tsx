@@ -6,9 +6,9 @@ import { Product } from "../Domain";
 
 // Simulación de servicio
 const getProducts = async (): Promise<Product[]> => [
-  { id: 1, name: "Hamburguesa", description: "Carne y queso", price: 80, image: "https://via.placeholder.com/200", category: "comidas" },
-  { id: 2, name: "Refresco", description: "Coca-Cola 600ml", price: 25, image: "https://via.placeholder.com/200", category: "bebidas" },
-  { id: 3, name: "Papas fritas", description: "Porción mediana", price: 40, image: "https://via.placeholder.com/200", category: "comidas" },
+  { id: "1", name: "Hamburguesa", description: "Carne y queso", price: 80, image: "https://via.placeholder.com/200", category: "comidas" },
+  { id: "2", name: "Refresco", description: "Coca-Cola 600ml", price: 25, image: "https://via.placeholder.com/200", category: "bebidas" },
+  { id: "3", name: "Papas fritas", description: "Porción mediana", price: 40, image: "https://via.placeholder.com/200", category: "comidas" },
 ];
 
 export default function CatalogScreen() {

@@ -4,7 +4,7 @@ import { Button, StyleSheet, TextInput, View } from "react-native";
 import { Product } from "../Domain";
 import { createProduct } from "../services/ProductService";
 
-export default function ProductForm() {
+export default function  () {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const router = useRouter();
